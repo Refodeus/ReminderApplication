@@ -1,0 +1,126 @@
+﻿<Window x:Name="MainMenu" x:Class="ReminderApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:ReminderApplication"
+        xmlns:uc="clr-namespace:ReminderApplication.UserControls"
+        xmlns:md="clr-namespace:ReminderApplication.Models"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d" Height="590" Width="900" FontFamily="Trebuchet MS" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/иконка.png">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="20 0 0 20" Background="#fefefe"/>
+            <Border CornerRadius="0 20 20 0" MouseDown="Border_MouseDown" Background="#c73f69" Grid.Column="1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 30">
+                    <Button Style="{StaticResource button}" Click="YearsScrollLeft_Click">
+                        <fa:ImageAwesome Icon="AngleLeft" Style="{StaticResource angle}"/>
+                    </Button>
+                    <Button x:Name="Year1" Content="y1" Style="{StaticResource button}" Click="YearScroll_Click"/>
+                    <Button x:Name="Year2" Content="y2" Style="{StaticResource button}" Click="YearScroll_Click"/>
+                    <Button x:Name="Year3" Content="y3" Style="{StaticResource button}" Click="YearScroll_Click" FontSize="24" Foreground="#c76f69"/>
+                    <Button x:Name="Year4" Content="y4" Style="{StaticResource button}" Click="YearScroll_Click"/>
+                    <Button x:Name="Year5" Content="y5" Style="{StaticResource button}" Click="YearScroll_Click"/>
+                    <Button Style="{StaticResource button}" Click="YearsScrollRight_Click">
+                        <fa:ImageAwesome Icon="AngleRight" Style="{StaticResource angle}"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel x:Name="MonthButtonsPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="1" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="2" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="3" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="4" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="5" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="6" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="7" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="8" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="9" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="10" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="11" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                    <Button Content="12" Style="{StaticResource buttonMonth}" Click="MonthButton_Click"/>
+                </StackPanel>
+                <Separator Height="0.8" Background="#cacaca" Margin="30 10"/>
+                <TextBlock x:Name="MonthName" Text="Name_Month" Foreground="#c73f69" FontSize="24" TextAlignment="Center" FontWeight="SemiBold" Margin="0 15 0 20"/>
+                <Calendar x:Name="MainCalendar" SelectedDatesChanged="MainCalendar_SelectedDatesChanged" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}"/>
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="30 45 30 10" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Width="150">
+                        <TextBlock Text="{Binding SelectedDate.Day, ElementName=MainCalendar}" FontSize="50" Foreground="#ffffff"/>
+                        <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Text, ElementName=MonthName}" Foreground="#ffffff" FontSize="24"/>
+                            <TextBlock Text="{Binding SelectedDate, ElementName=MainCalendar, 
+           StringFormat='{}{0:dddd}', ConverterCulture='ru-RU'}" Foreground="#eba5bb" FontSize="14"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Style="{StaticResource buttonBig}" Margin="112 0 5 0" Click="DayAngleButton_ClickLeft">
+                        <fa:ImageAwesome Icon="AngleLeft" Style="{StaticResource angleBig}"/>
+                    </Button>
+                    <Button Style="{StaticResource buttonBig}" Click="DayAngleButton_ClickRight">
+                        <fa:ImageAwesome Icon="AngleRight" Style="{StaticResource angleBig}"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Text="5 заданий - 2 осталось" Foreground="#eba5bb" FontSize="16" Margin="35 0 20 0"/>
+                    <Button Style="{StaticResource button}" Click="YandexSync_Click">
+                        <fa:ImageAwesome Icon="Refresh" Width="20" Height="20" Margin="140 0 0 0" Foreground="#f1f1f1"/>
+                    </Button>
+                </StackPanel>
+                <Border Grid.Row="2" Background="#cd5278" CornerRadius="10" HorizontalAlignment="Center" Width="355" Margin="0 20 0 20" Padding="17 15 5 15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:ImageAwesome Icon="Pencil" Width="15" Height="15" Foreground="#eba5bb"/>
+                                <TextBlock Text="Добавить заметку" Name="lblNote" Style="{StaticResource textHint}" MouseDown="lblNote_MouseDown" Cursor="Hand"/>
+                                <TextBox Name="txtNote" Style="{StaticResource textBox}" TextChanged="txtNote_TextChanged"/>
+                            </Grid>
+                            <Separator Margin="0 12 0 11" Height="0.8" Background="#c14269"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <fa:ImageAwesome x:Name="BellToggle" Icon="Bell" Width="15" Height="15" Foreground="#f1f1f1" MouseDown="BellToggle_MouseDown" Cursor="Hand"/>
+                                <xctk:MaskedTextBox x:Name="TimeValue" Mask="00:00 - 00:00" PromptChar="_" TextChanged="TimeValue_Changed" Style="{StaticResource textBox}"/>
+                            </Grid>
+                        </StackPanel>
+                        <Button Grid.Column="1" Style="{StaticResource button}" Click="AddNewNote_Click">
+                            <fa:ImageAwesome Icon="PlusCircle" Width="28" Height="28" Foreground="#f9f9f9"/>
+                        </Button>
+                    </Grid>
+                </Border>
+                <ScrollViewer Grid.Row="3"  VerticalScrollBarVisibility="Auto" Style="{StaticResource ModernScrollViewer}">
+                    <StackPanel x:Name="NotesContainer"  Orientation="Vertical" ></StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
