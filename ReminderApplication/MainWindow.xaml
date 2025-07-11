@@ -23,6 +23,7 @@
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <!--Весь основной код дальше-->
             <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 30">
                     <Button Style="{StaticResource button}" Click="YearsScrollLeft_Click">
@@ -79,9 +80,9 @@
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <TextBlock Text="5 заданий - 2 осталось" Foreground="#eba5bb" FontSize="16" Margin="35 0 20 0"/>
+                    <TextBlock Text="Синхронизация:" Foreground="#eba5bb" FontSize="16" Margin="35 0 20 0"/>
                     <Button Style="{StaticResource button}" Click="YandexSync_Click">
-                        <fa:ImageAwesome Icon="Refresh" Width="20" Height="20" Margin="140 0 0 0" Foreground="#f1f1f1"/>
+                        <fa:ImageAwesome Icon="Refresh" Width="20" Height="20" Margin="-30 0 0 0" Foreground="#f1f1f1"/>
                     </Button>
                 </StackPanel>
                 <Border Grid.Row="2" Background="#cd5278" CornerRadius="10" HorizontalAlignment="Center" Width="355" Margin="0 20 0 20" Padding="17 15 5 15">

@@ -304,14 +304,9 @@ namespace ReminderApplication
 
         private async void YandexSync_Click(object sender, RoutedEventArgs e)
         {
-            //string response = await _yandexCalendarService.Authenticate();
-            //if (!string.IsNullOrEmpty(response))
-            //{
-            //    }
             foreach (var note in _allNotes.SelectMany(d => d.Notes))
                 await _yandexCalendarService.SyncWithYandexCalendar(note);
             System.Windows.MessageBox.Show("Синхронизация с Яндекс Календарем завершена!", "Синхронизация", MessageBoxButton.OK, MessageBoxImage.Information);
-
         }
 
         protected override void OnClosed(EventArgs e)
